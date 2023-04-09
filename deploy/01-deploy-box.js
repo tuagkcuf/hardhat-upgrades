@@ -1,6 +1,6 @@
-module.exports = async ({getNamedAccounts, deployments}) => {
-    const {deploy, log} = deployments
-    const {deployer} = await getNamedAccounts()
+module.exports = async ({ getNamedAccounts, deployments }) => {
+    const { deploy, log } = deployments
+    const { deployer } = await getNamedAccounts()
 
     log("----------------------------")
     const box = await deploy("Box", {
@@ -8,7 +8,11 @@ module.exports = async ({getNamedAccounts, deployments}) => {
         args: [],
         waitConfirmations: network.config.blockConfirmations,
         proxy: {
-            
-        }
+            proxtContract: "OpenZeppelinTransparentProxy",
+            viaAdminContract: {
+                name: "BoxProxyAdmin",
+                artifact: "BoxProxyAdmin",
+            },
+        },
     })
 }
