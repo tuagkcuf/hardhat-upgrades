@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.8; 
 
-contract Box {
+contract BoxV2 {
     uint256 internal value;
 
     // Emitted when the stored value changes
@@ -18,7 +18,13 @@ contract Box {
         return value;
     }
 
+    // // Increments the stored value by one
+    function increment() public {
+        value += 1;
+        emit ValueChanged(value);
+    }
+
     function version() public pure returns (uint256) {
-        return 1;
+        return 2;
     }
 }
